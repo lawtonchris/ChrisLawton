@@ -1,5 +1,11 @@
+.rye-regular {
+  font-family: "Rye", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 h1 {
-  color: red;
+  color: navy;
 }
 body {
   background-color: white;
@@ -23,13 +29,42 @@ body {
     height: 100px;
   */
  }
- 
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+i:after{
+  
+  display: inline-block;
+  padding-left: 1em;
+}
+
+.aboutme {
+	  display: grid;
+	grid-template-columns: 2fr 4fr;
+	/*
+	column-count: 2;
+	column-width: 100px;
+	column-gap: 20px;
+	*/
+}
+
+image {
+	grid-column: 2;
+}
+
+
  footer {
 	 display:flex;
 	 justify-content:flex-start;
-text-align: left;
+ text-align: left;
 padding: 10px;
 color: white;
+
 }
 
 /*
