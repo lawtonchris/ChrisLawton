@@ -16,7 +16,16 @@ body {
 	justify-content:space-between;
 }
 
-
+header {
+  text-align: center;
+  background: url('IMG_8504.jpg') no-repeat ;
+  background-size: cover;
+  overflow: hidden;
+  padding-top: 60px;
+}
+header {
+  line-height: 1.5;
+}
 
 .menu > .menuitem {
     margin-top: 0px;
