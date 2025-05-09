@@ -16,10 +16,14 @@ body {
 	justify-content:space-between;
 }
 
+body {
+	 background: url('IMG_8504.jpg') no-repeat ;
+  background-size: cover;
+}
+
 header {
   text-align: center;
-  background: url('IMG_8504.jpg') no-repeat ;
-  background-size: cover;
+ 
   overflow: hidden;
   padding-top: 60px;
 }
@@ -84,7 +88,14 @@ padding: 10px;
 color: white;
 
 }
-
+//Add new X icon to Fontawsome 4.7
+.fa.fa-twitter{
+	font-family:sans-serif;
+}
+.fa.fa-twitter::before{
+	content:"𝕏";
+	font-size:1.2em;
+}
 /*
 
 @media (min-width: 100em) {
