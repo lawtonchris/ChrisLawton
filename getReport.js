@@ -54,6 +54,7 @@ ejs.renderFile(templatePath, data, (err, str) => {
     return;
   }
 
+  /*
   // Write the rendered HTML to a file
   fs.writeFile(outputPath, str, 'utf8', (err) => {
     if (err) {
@@ -62,6 +63,7 @@ ejs.renderFile(templatePath, data, (err, str) => {
       console.log('HTML file generated successfully!');
     }
   });
+  */
 });
 
 }

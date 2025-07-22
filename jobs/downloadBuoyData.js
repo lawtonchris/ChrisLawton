@@ -3,9 +3,10 @@ const fs = require('fs');
 const https = require('https');
 const cron = require('node-cron');
 
-const app = express();
-const PORT = 3000;
+//const app = express();
+//const PORT = 3000;
 
+function downloadBuoyFile(){
 // Function to download a file
 const downloadFile = (url, destination) => {
   const file = fs.createWriteStream(destination);
@@ -29,7 +30,14 @@ cron.schedule('0 * */6 * * *', () => {
   downloadFile(fileUrl, destination);
 });
 
+console.log("Buoy data file download cron job is scheduled.")
+}
+
+module.exports = downloadBuoyFile;
+
+/*
 // Start the Express server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+*/
