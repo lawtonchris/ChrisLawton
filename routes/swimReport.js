@@ -57,7 +57,9 @@ rl.on('line', (line) => {
       return;
     }
 
-  
+    res.render('swimReport',data);
+    
+  /*
   // Write the rendered HTML to a file
   fs.writeFile(outputPath, str, 'utf8', (err) => {
     if (err) {
@@ -66,6 +68,7 @@ rl.on('line', (line) => {
       console.log('HTML file generated successfully!');
     }
   });
+  */
   
   });
 

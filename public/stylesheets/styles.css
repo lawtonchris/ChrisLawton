@@ -1,0 +1,158 @@
+.rye-regular {
+  font-family: "Rye", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  color: #003366;
+}
+
+body {
+	background-image: url('/images/IMG_8504.jpg');
+	background-size: cover;
+	background-color: rgba(0,0,0,0.75);
+	font-size:18.4px;
+	padding:20px;
+	//color:#003366;
+	color:white;
+}
+
+header {
+  text-align: center;
+  line-height: 1.5; 
+  overflow: hidden;
+  padding-top: 60px;
+}
+
+
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+i:after{
+  
+  display: inline-block;
+  padding-left: 1em;
+}
+
+li{
+	margin-bottom:10px;
+}
+.aboutme {
+	display: grid;
+	grid-template-columns: 2fr 4fr;
+	/*
+	column-count: 2;
+	column-width: 100px;
+	column-gap: 20px;
+	*/
+}
+
+image {
+	grid-column: 2;
+}
+
+
+ footer {
+	 display:flex;
+	 justify-content:flex-start;
+ text-align: left;
+padding: 10px;
+color: white;
+
+}
+//Add new X icon to Fontawsome 4.7
+.fa.fa-twitter{
+	font-family:sans-serif;
+}
+.fa.fa-twitter::before{
+	content:"𝕏";
+	font-size:1.2em;
+}
+
+.topnav, .menu, .menuitem {
+	display:flex;
+	align-items: center;
+	justify-content:space-between;
+}
+
+.menu > .menuitem {
+    margin-top: 0px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  background-color: lightgray;
+  /*
+    width: 100px;
+    height: 100px;
+  */
+ }
+
+header .profile-image {
+  margin-top: 50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid black;
+  transition: all .5s;
+}
+
+/*
+
+@media (min-width: 100em) {
+  body {
+    background-color: blue;
+  }
+}
+.wrapper {
+  display: flex;
+}
+
+.wrapper > div {
+  flex: 1;
+}
+* {
+  box-sizing: border-box;
+}
+
+ul {
+	display:flex;
+}
+
+.wrapper > div {
+  border-radius: 5px;
+  background-color: rgb(207 232 220);
+  padding: 1em;
+}
+.gridwrapper > div {
+  border-radius: 5px;
+  background-color: rgb(107 232 220);
+  padding: 1em;
+}
+ .gridwrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px 100px;
+  gap: 10px;
+}
+
+
+.box1 {
+  grid-column: 2 / 4;
+  grid-row: 1;
+}
+
+.box2 {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+.box3 {
+  grid-row: 2;
+  grid-column: 3;
+}
+*/

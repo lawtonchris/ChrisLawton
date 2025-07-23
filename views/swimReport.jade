@@ -2,12 +2,12 @@
 extends layout
 
 block content
-  h1= Open Water Swim Report
-  h2 = Water Temp 
-  div {waterTemp}
-  h2 = Air Temp 
-  div {airTmp}
-    h2 = Wind 
-  div {windSpd} at {windDir}
+  h1= "Open Water Swim Report"
+  h2 Water Temp
+  div #{waterTemp}
+  h2 Air Temp
+  div #{airTemp}
+  h2 Wind 
+  div #{windSpd} at #{windDir} degrees
 
 
