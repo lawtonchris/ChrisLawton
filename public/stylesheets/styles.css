@@ -101,6 +101,11 @@ header .profile-image {
   transition: all .5s;
 }
 
+.social-icons {
+  display: flex;
+  gap: 15px; /* adds spacing between children */
+  align-items: center;
+}
 /*
 
 @media (min-width: 100em) {

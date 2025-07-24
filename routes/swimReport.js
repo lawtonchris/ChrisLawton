@@ -12,8 +12,6 @@ router.get('/', function(req, res, next) {
 // RSS https://www.ndbc.noaa.gov/data/latest_obs/44007.rss
 //https://www.ndbc.noaa.gov/data/realtime2/44007.txt
 
-const templatePath = './views/swimReport.ejs';
-const outputPath = './swimReport.html';
 const fileStream = fs.createReadStream('44007.txt');
 const rl = readline.createInterface({
   input: fileStream,
@@ -51,27 +49,11 @@ rl.on('line', (line) => {
       windSpd: windSpd,
       windDir: windDir
     };
-  ejs.renderFile(templatePath, data, (err, str) => {
-    if (err) {
-      console.error('Error rendering the template:', err);
-      return;
-    }
-
+  
+    data.title="Swim Report";
     res.render('swimReport',data);
     
-  /*
-  // Write the rendered HTML to a file
-  fs.writeFile(outputPath, str, 'utf8', (err) => {
-    if (err) {
-      console.error('Error writing the file:', err);
-    } else {
-      console.log('HTML file generated successfully!');
-    }
-  });
-  */
   
-  });
-
   }
   i++;
 });
