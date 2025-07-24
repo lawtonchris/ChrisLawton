@@ -1,7 +1,8 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-//var cookieParser = require('cookie-parser');
+const PORT = 3000;
+
 //var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -14,7 +15,6 @@ var app = express();
 const downloadBuoyData = require('./jobs/downloadBuoyData');
 downloadBuoyData();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -22,7 +22,6 @@ app.set('view engine', 'pug');
 //app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
@@ -45,8 +44,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const server = app.listen(4000, function () {
-    console.log('listening to port 4000')
+/*
+const server = app.listen(PORT, function () {
+    console.log('listening to port ' + PORT);
 });
-
+*/
 module.exports = app;
