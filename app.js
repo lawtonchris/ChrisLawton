@@ -15,6 +15,12 @@ var app = express();
 const downloadBuoyData = require('./jobs/downloadBuoyData');
 downloadBuoyData();
 
+const getHighTides = require('./jobs/getHighTides');
+getHighTides();
+
+const { get } = require('http');
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

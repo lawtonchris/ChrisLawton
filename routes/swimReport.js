@@ -6,11 +6,15 @@ const readline = require('readline');
 const ejs = require('ejs');
 const path = require('path');
 
+const {getHighTides} = require('../jobs/getHighTides');
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
 // RSS https://www.ndbc.noaa.gov/data/latest_obs/44007.rss
 //https://www.ndbc.noaa.gov/data/realtime2/44007.txt
+
+//Tides example: https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=web_services&begin_date=20251001&end_date=20251002&datum=MLLW&station=8443970&time_zone=lst_ldt&units=english&interval=hilo&format=json
 
 const fileStream = fs.createReadStream('./data/44007.txt');
 const rl = readline.createInterface({
@@ -51,6 +55,8 @@ rl.on('line', (line) => {
     };
   
     data.title="Swim Report";
+
+
     res.render('swimReport',data);
     
   
