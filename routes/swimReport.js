@@ -16,7 +16,16 @@ router.get('/', function(req, res, next) {
 
 //Tides example: https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?product=predictions&application=web_services&begin_date=20251001&end_date=20251002&datum=MLLW&station=8443970&time_zone=lst_ldt&units=english&interval=hilo&format=json
 
-const fileStream = fs.createReadStream('./data/44007.txt');
+  // get buoy number from querystring (from the swimReport view form)
+  // validate numeric, fall back to default '44007'
+  const buoy = (req.query && req.query.buoy && /^\d+$/.test(req.query.buoy))
+    ? req.query.buoy
+    : '44007';
+
+  // build data file path from buoy number
+  const buoyDataPath = path.join(__dirname, '..', 'data', `${buoy}.txt`);
+  const fileStream = fs.createReadStream(buoyDataPath);
+  
 const rl = readline.createInterface({
   input: fileStream,
   crlfDelay: Infinity
@@ -40,23 +49,43 @@ rl.on('line', (line) => {
   }
   if(i===2){
     console.log("Latest: " +parsed);
-  }
-  if(i===2){
     console.log("Water Temp: " +parsed[14]);
     waterTemp = parsed[14]*9/5 + 32;
     airTemp = parsed[13]*9/5 + 32;
     windSpd = parsed[6];
     windDir = parsed[5];
+
+    // helper to pad month/day
+    const pad = n => n.toString().padStart(2, '0');
+
+    // create date variables from the 3rd line (parsed[0]=YYYY, parsed[1]=MM, parsed[2]=DD)
+    const buoyDateISO = `${parsed[0]}-${pad(parsed[1])}-${pad(parsed[2])}`; // e.g. 2025-11-06
+    const buoyDateCompact = `${parsed[0]}${pad(parsed[1])}${pad(parsed[2])}`; // e.g. 20251106
+
     const data = {
       waterTemp: Math.round(waterTemp*10)/10,
       airTemp: Math.round(airTemp*10)/10,
       windSpd: windSpd,
-      windDir: windDir
+      windDir: windDir,
+      buoyDateISO,       // add to template data if desired
+      buoyDateCompact
     };
   
     data.title="Swim Report";
 
+    // Read highTides.json and attach to template data
+    try {
+      const highTidesPath = path.join(__dirname, '..', 'data', 'highTides.json');
+      const htRaw = fs.readFileSync(highTidesPath, 'utf8');
+      const highTides = JSON.parse(htRaw);
+      data.highTides = highTides;
+    } catch (err) {
+      console.error('Could not read highTides.json:', err.message);
+      data.highTides = []; // fallback
+    }
 
+    rl.close(); // stop reading further lines
+    console.log('Rendering swimReport with data:', data);
     res.render('swimReport',data);
     
   

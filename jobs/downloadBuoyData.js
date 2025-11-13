@@ -2,9 +2,15 @@ const express = require('express');
 const fs = require('fs');
 const https = require('https');
 const cron = require('node-cron');
+const path = require('path');
 
-const fileUrl = 'https://www.ndbc.noaa.gov/data/realtime2/44007.txt'; // Replace with your file URL
-const destination = './data/44007.txt'; // Replace with your desired file path
+
+const buoyNumber = '44007';
+  // build data file path from buoy number
+  const buoyDataPath = path.join(__dirname, '..', 'data', `${buoyNumber}.txt`);
+
+const fileUrl = 'https://www.ndbc.noaa.gov/data/realtime2/' + buoyNumber + '.txt'; // Replace with your file URL
+const destination = buoyDataPath; // './data/' + buoyNumber + '.txt'; 
 
 function downloadBuoyFile(){
 // Function to download a file
@@ -21,6 +27,10 @@ const downloadFile = (url, destination) => {
     console.error('Error downloading file:', err.message);
   });
 };
+
+// Download once when app starts
+console.log('Starting file download...');
+downloadFile(fileUrl, destination);
 
 // Schedule the file download at regular intervals (every 6 hours)
 cron.schedule('0 * */6 * * *', () => { 

@@ -4,8 +4,17 @@ const axios = require('axios');
 const stationId = '8443970';
 
 // Date range in YYYYMMDD format
-const beginDate = '20251001';
-const endDate = '20251002';
+//const beginDate = '20251105';
+//const endDate = '20251105';
+
+// Date range in YYYYMMDD format (use today's date)
+const pad = n => n.toString().padStart(2, '0');
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = pad(today.getMonth() + 1);
+const dd = pad(today.getDate());
+const beginDate = `${yyyy}${mm}${dd}`;
+const endDate = beginDate;
 
 // NOAA API URL
 const url = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter`;
