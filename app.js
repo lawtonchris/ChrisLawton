@@ -4,23 +4,20 @@ const logger = require('morgan');
 var path = require('path');
 const PORT = 3000;
 
-//var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var swimReportRouter = require('./routes/swimReport');
 
 var app = express();
 
-//Start cron job to download buoy data
-const downloadBuoyData = require('./jobs/downloadBuoyData');
-downloadBuoyData();
+//Download Buoy file and Start cron job to download buoy data
+//const downloadBuoyData = require('./jobs/downloadBuoyData');
+//downloadBuoyData('44007', 6);
 
 const getHighTides = require('./jobs/getHighTides');
 getHighTides();
 
 const { get } = require('http');
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
